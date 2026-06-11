@@ -1,6 +1,6 @@
-# 📋 App Agenda
+# 📋 App notas
 
-Aplicación de agenda/contactos con frontend en **React** y backend con **SQLite**.
+Aplicación de notas con frontend en **React** y backend con **SQLite**.
 
 ---
 
@@ -54,7 +54,7 @@ Esto abrirá la aplicación en: **http://localhost:5173**
 ## 📁 Estructura del Proyecto
 
 ```
-app-agenda/
+app-notas/
 ├── frontend/              # Aplicación React + Vite
 │   ├── src/               # Código fuente
 │   │   ├── App.jsx        # Componente principal
