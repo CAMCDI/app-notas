@@ -32,4 +32,11 @@ function sesion() {
         echo json_encode(['error' => 'Credenciales incorrectas']);
     }
 }
+
+function cerrar_sesion() {
+    session_start();
+    session_unset();
+    session_destroy();
+    echo json_encode(['exito' => true]);
+}
 ?>

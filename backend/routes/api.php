@@ -1,6 +1,8 @@
 <?php
 header("Access-Control-Allow-Origin: http://localhost:5172");
 header("Access-Control-Allow-Credentials: true");
+header("Access-Control-Allow-Methods: POST, GET, PUT, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
 header("Content-Type: application/json");
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') exit(0);
 
@@ -19,7 +21,6 @@ if ($uri === '/sesion' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     exit;
 }
 
-// Notas (sin 's' para que coincida con los controladores)
 if ($uri === '/nota/crear' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     require_once __DIR__ . '/../controllers/NotaController.php';
     crear_nota();
@@ -53,6 +54,12 @@ if ($uri === '/pagar' && $_SERVER['REQUEST_METHOD'] === 'POST') {
 if ($uri === '/es-premium' && $_SERVER['REQUEST_METHOD'] === 'GET') {
     require_once __DIR__ . '/../controllers/PagoController.php';
     es_premium();
+    exit;
+}
+
+if ($uri === '/logout' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once __DIR__ . '/../controllers/AuthController.php';
+    cerrar_sesion();
     exit;
 }
 
