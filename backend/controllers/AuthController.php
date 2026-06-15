@@ -1,21 +1,35 @@
 <?php
-require_once __DIR__.'/../config/database.php';
+require_once __DIR__ . '/../config/database.php';
 
-function registrar(){
+function registrar() {
     global $bd;
     $data = json_decode(file_get_contents('php://input'), true);
-    if (!$data['nombre'] || !$data['correo'] || !$data['password']){
+    if (!$data['nombre'] || !$data['correo'] || !$data['password']) {
         http_response_code(400);
-        echo json_encode(['error'=> 'Faltaa nombre, correo o password']);
+        echo json_encode(['error' => 'Faltan nombre, correo o password']);
         return;
     }
     $hash = password_hash($data['password'], PASSWORD_DEFAULT);
-    $stmt = $bd->prepare("INSERT INTO usuarios (nombre,correo,password) VALUES (:n, :c, :p)");
-    $stmt-> bindValue(':n',$data['nombre'], SQLITE3_TEXT);
-    $stmt-> bindValue(':c',$data['correo'], SQLITE3_TEXT);
-    $stmt-> bindValue(':p',$data['password'], SQLITE3_TEXT);
+    $stmt = $bd->prepare("INSERT INTO usuarios (nombre, correo, password) VALUES (:n, :c, :p)");
+    $stmt->bindValue(':n', $data['nombre'], SQLITE3_TEXT);
+    $stmt->bindValue(':c', $data['correo'], SQLITE3_TEXT);
+    $stmt->bindValue(':p', $hash, SQLITE3_TEXT);
+    echo $stmt->execute() ? json_encode(['exito' => true]) : json_encode(['error' => 'No se pudo registrar']);
+}
 
-    echo $stmt->execute()? json_encode(['exito'=> true]) :json_encode(['error' => 'No se pudo registar']);
-}   
-
+function sesion() {
+    global $bd;
+    session_start();
+    $data = json_decode(file_get_contents('php://input'), true);
+    $correo = $bd->escapeString($data['correo']);
+    $res = $bd->query("SELECT id, nombre, password FROM usuarios WHERE correo='$correo'");
+    $user = $res->fetchArray(SQLITE3_ASSOC);
+    if ($user && password_verify($data['password'], $user['password'])) {
+        $_SESSION['usuario_id'] = $user['id'];
+        echo json_encode(['exito' => true, 'nombre' => $user['nombre']]);
+    } else {
+        http_response_code(401);
+        echo json_encode(['error' => 'Credenciales incorrectas']);
+    }
+}
 ?>
