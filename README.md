@@ -72,6 +72,15 @@ npm run dev
 ```
 El frontend estará disponible típicamente en `http://localhost:5173`.
 
+## Llave en back en .env
+```
+STRIPE_SECRET_KEY=sk_test_...
+```
+
+## llave en front en .env
+```
+VITE_STRIPE_PUBLIC_KEY=pk_test_...
+```
 
 ## Tecnologías Utilizadas
 

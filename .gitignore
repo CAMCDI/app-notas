@@ -1,5 +1,7 @@
 # Dependencias
 node_modules/
+.env
+.env.*
 
 # Build
 dist/
