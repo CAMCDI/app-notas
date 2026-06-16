@@ -1,15 +1,22 @@
-import { loadStripe } from '@stripe/stripe-js';
+import { Routes, Route } from 'react-router-dom'
+import { Toaster } from 'react-hot-toast'
+import Login from './pages/Login'
+import Registro from './pages/Registro'
+import Notas from './pages/Notas'
+import Pago from './pages/Pago'
 
-
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
-
-function App() {
+const App = () => {
   return (
-    <div>
-      <h1>Frontend Base</h1>
-      <p>Stripe configurado correctamente con variable de entorno.</p>
-    </div>
-  );
+    <>
+      <Toaster position="bottom-left" />
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/registro" element={<Registro />} />
+        <Route path="/notas" element={<Notas />} />
+        <Route path="/pago" element={<Pago />} />
+      </Routes>
+    </>
+  )
 }
 
-export default App;
+export default App
