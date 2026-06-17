@@ -19,7 +19,7 @@ const Header = ({ onCerrarSesion, premium }) => {
         )}
       </div>
       <div className="flex items-center gap-2">
-        {/* Botón modo oscuro/claro — solo visible para usuarios Premium */}
+
         {premium && (
           <button
             onClick={toggleTema}
@@ -32,7 +32,7 @@ const Header = ({ onCerrarSesion, premium }) => {
             <span className="text-sm">{tema === 'oscuro' ? 'Claro' : 'Oscuro'}</span>
           </button>
         )}
-        {/* Botón Premium — solo visible si el usuario NO es premium */}
+
         {!premium && (
           <button
             onClick={() => navigate('/pago')}
@@ -40,7 +40,7 @@ const Header = ({ onCerrarSesion, premium }) => {
             <Star size={15} strokeWidth={1.75} className="text-amber-500 fill-amber-500" /> Premium
           </button>
         )}
-        {/* Botón cerrar sesión */}
+
         <button
           onClick={onCerrarSesion}
           className="text-md text-neutral-300 bg-amber-700 border border-transparent rounded-xl px-3 py-1 hover:bg-red-600 hover:border-red-600 transition-colors">

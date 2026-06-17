@@ -9,6 +9,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') exit(0);
 
 $uri = $_SERVER['REQUEST_URI'];
 $uri = strtok($uri, '?');
+// Quitar el prefijo /api si el backend está en una subcarpeta
+if (strpos($uri, '/api') === 0) {
+    $uri = substr($uri, 4);
+}
+if ($uri === '') $uri = '/';
 
 if ($uri === '/registrar' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     require_once __DIR__ . '/../controllers/AuthController.php';

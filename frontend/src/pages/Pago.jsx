@@ -74,21 +74,21 @@ const PagoForm = ({ onPagoExitoso }) => {
   );
 };
 
-// Lista de beneficios de la suscripción Premium
+
 const beneficios = [
-  { icon: Infinity,       texto: 'Notas ilimitadas (gratis: máximo 10)' },
-  { icon: Palette,        texto: 'Colores personalizados en tus notas' },
-  { icon: BookTemplate,   texto: 'Plantillas: Apuntes, Diario, Tareas, Proyecto' },
-  { icon: CalendarDays,   texto: 'Fechas de evento en cada nota' },
-  { icon: Moon,           texto: 'Modo oscuro y claro a tu gusto' },
-  { icon: Star,           texto: 'Insignia Premium en tu perfil' },
+  { icon: Infinity, texto: 'Notas ilimitadas (gratis: máximo 5)' },
+  { icon: Palette, texto: 'Colores personalizados en tus notas' },
+  { icon: BookTemplate, texto: 'Plantillas: Apuntes, Diario, Tareas, Proyecto' },
+  { icon: CalendarDays, texto: 'Fechas de evento en cada nota' },
+  { icon: Moon, texto: 'Modo oscuro y claro a tu gusto' },
+  { icon: Star, texto: 'Insignia Premium en tu perfil' },
 ];
 
 const Pago = () => {
   const navigate = useNavigate();
   const { setEsPremium } = useUser();
 
-  // Al pago exitoso actualizamos el estado global de premium
+
   const handlePagoExitoso = () => {
     setEsPremium(true);
   };
@@ -100,7 +100,7 @@ const Pago = () => {
           <NotebookPen size={42} strokeWidth={1.75} className="text-amber-600" />
           <h1 className="text-2xl font-bold text-neutral-800">Note App</h1>
         </div>
-        {/* Muestra los beneficios del Premium */}
+
         <div className="mb-5 rounded-2xl border border-amber-200 bg-amber-50 p-5 shadow-sm">
           <div className="flex items-center gap-2 mb-3">
             <Unlock size={16} className="text-amber-600" />
@@ -115,7 +115,7 @@ const Pago = () => {
             ))}
           </ul>
         </div>
-        {/* Formulario de pago */}
+
         <div className="rounded-2xl border border-neutral-200 bg-white p-8 shadow-sm">
           <div className="mb-6 text-center">
             <span className="flex justify-center">

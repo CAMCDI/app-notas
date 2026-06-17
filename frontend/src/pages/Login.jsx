@@ -54,13 +54,13 @@ const Login = () => {
     <div className="flex min-h-screen items-center justify-center bg-neutral-50 px-4">
       <div className="w-full max-w-sm">
 
-        {/* Logo */}
+
         <div className="mb-8 flex flex-col items-center gap-2">
           <NotebookPen size={42} strokeWidth={1.75} className="text-amber-600" />
           <h1 className="text-2xl font-bold text-neutral-800">Note App</h1>
         </div>
 
-        {/* Tarjeta */}
+
         <div className="rounded-2xl border border-neutral-200 bg-white p-8 shadow-sm">
           <h2 className="mb-6 text-center text-xl font-semibold text-neutral-800">
             Iniciar sesión
