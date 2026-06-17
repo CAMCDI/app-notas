@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import { NotebookPen } from 'lucide-react'
 import toast from 'react-hot-toast'
 
+import { API_URL } from '../config'
+
 const Registro = () => {
 
   const [nombre, setNombre]     = useState('')
@@ -23,7 +25,7 @@ const Registro = () => {
     setCargando(true)
 
     try {
-      const res = await fetch('http://localhost:8000/registrar', {
+      const res = await fetch(`${API_URL}/registrar`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',

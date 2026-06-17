@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
+import { API_URL } from '../config';
+
 export const useNotas = (setEsPremium) => {
   const [notas, setNotas] = useState([]);
   const [cargando, setCargando] = useState(false);
@@ -10,7 +12,7 @@ export const useNotas = (setEsPremium) => {
 
   const cargarNotas = async () => {
     try {
-      const res = await fetch('http://localhost:8000/notas', { credentials: 'include' });
+      const res = await fetch(`${API_URL}/notas`, { credentials: 'include' });
       if (res.ok) {
         const data = await res.json();
         setNotas(data);
@@ -22,7 +24,7 @@ export const useNotas = (setEsPremium) => {
 
   const cargarPremium = async () => {
     try {
-      const res = await fetch('http://localhost:8000/es-premium', { credentials: 'include' });
+      const res = await fetch(`${API_URL}/es-premium`, { credentials: 'include' });
       if (res.ok) {
         const data = await res.json();
         setEsPremium(data.premium);
@@ -40,7 +42,7 @@ export const useNotas = (setEsPremium) => {
   const crearNota = async (datos) => {
     setCargando(true);
     try {
-      const res = await fetch('http://localhost:8000/nota/crear', {
+      const res = await fetch(`${API_URL}/nota/crear`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -69,7 +71,7 @@ export const useNotas = (setEsPremium) => {
 
   const actualizarNota = async (id, campos) => {
     try {
-      const res = await fetch('http://localhost:8000/nota/actualizar', {
+      const res = await fetch(`${API_URL}/nota/actualizar`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -90,7 +92,7 @@ export const useNotas = (setEsPremium) => {
 
   const eliminarNota = async (id) => {
     try {
-      const res = await fetch('http://localhost:8000/nota/eliminar', {
+      const res = await fetch(`${API_URL}/nota/eliminar`, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -111,7 +113,7 @@ export const useNotas = (setEsPremium) => {
   const toggleFavorito = async (nota) => {
     const nuevoEstado = !nota.es_favorito;
     try {
-      const res = await fetch('http://localhost:8000/nota/actualizar', {
+      const res = await fetch(`${API_URL}/nota/actualizar`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',

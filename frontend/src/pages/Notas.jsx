@@ -6,6 +6,8 @@ import { useUser } from '../context/UserContext';
 import { useNotas } from '../hooks/useNotas';
 import toast from 'react-hot-toast';
 
+import { API_URL } from '../config';
+
 const Notas = () => {
   const { usuario, setUsuario, esPremium, setEsPremium, tema } = useUser();
   const navigate = useNavigate();
@@ -49,7 +51,7 @@ const Notas = () => {
   };
 
   const cerrarSesion = async () => {
-    await fetch('http://localhost:8000/logout', { method: 'POST', credentials: 'include' });
+    await fetch(`${API_URL}/logout`, { method: 'POST', credentials: 'include' });
     setUsuario(null);
     navigate('/');
   };

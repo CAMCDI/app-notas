@@ -4,6 +4,8 @@ import { NotebookPen } from 'lucide-react'
 import toast from 'react-hot-toast'
 import { useUser } from '../context/UserContext'
 
+import { API_URL } from '../config'
+
 const Login = () => {
 
   const [correo, setCorreo]     = useState('')
@@ -23,7 +25,7 @@ const Login = () => {
     setCargando(true)
 
     try {
-      const res = await fetch('http://localhost:8000/sesion', {
+      const res = await fetch(`${API_URL}/sesion`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',

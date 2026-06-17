@@ -5,6 +5,7 @@ import { CardElement, useStripe, useElements, Elements } from '@stripe/react-str
 import { loadStripe } from '@stripe/stripe-js';
 import { useUser } from '../context/UserContext';
 import toast from 'react-hot-toast';
+import { API_URL } from '../config';
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
@@ -27,7 +28,7 @@ const PagoForm = ({ onPagoExitoso }) => {
       return;
     }
     try {
-      const res = await fetch('http://localhost:8000/pagar', {
+      const res = await fetch(`${API_URL}/pagar`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
