@@ -109,7 +109,29 @@ export const useNotas = (setEsPremium) => {
   };
 
   const toggleFavorito = async (nota) => {
-    await actualizarNota(nota.id, { es_favorito: nota.es_favorito ? 0 : 1 });
+    const nuevoEstado = !nota.es_favorito;
+    try {
+      const res = await fetch('http://localhost:8000/nota/actualizar', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ id: nota.id, es_favorito: nuevoEstado ? 1 : 0 })
+      });
+      if (res.ok) {
+        if (nuevoEstado) {
+          toast.success('Nota agregada a favoritos');
+        } else {
+          toast.success('Nota eliminada de favoritos');
+        }
+        await cargarNotas();
+        return true;
+      }
+      toast.error('Error al actualizar favorito');
+      return false;
+    } catch (error) {
+      toast.error('Error al actualizar favorito');
+      return false;
+    }
   };
 
   return {
