@@ -5,8 +5,8 @@ const UserContext = createContext();
 export const UserProvider = ({ children }) => {
   const [usuario, setUsuario] = useState(null);
   const [esPremium, setEsPremium] = useState(false);
-  const [tema, setTema] = useState('claro'); // 'claro' | 'oscuro'
-  // Aplica o remueve la clase "dark" en <html> según el tema
+  const [tema, setTema] = useState('claro');
+
   useEffect(() => {
     if (tema === 'oscuro') {
       document.documentElement.classList.add('dark');

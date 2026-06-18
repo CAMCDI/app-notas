@@ -1,4 +1,4 @@
-// hooks/useNotas.js
+
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
@@ -50,7 +50,7 @@ export const useNotas = (setEsPremium) => {
       });
       const data = await res.json();
       if (res.status === 402) {
-        toast.error('Límite de 10 notas. Hazte premium.');
+        toast.error('Límite de 5 notas. Hazte premium.');
         navigate('/pago');
         return false;
       }
